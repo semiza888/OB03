@@ -144,6 +144,6 @@ zoo.add_employee(Veterinarian("Алексей"))
 zoo.list_animals()
 zoo.list_employees()
 
-# Работ программы
+# Работа программы
 zoo.employees[0].feed_animal(zoo.animals[0])  # Елена кормит Чижика
 zoo.employees[1].heal_animal(zoo.animals[1])  # Алексей лечит Ваську
