@@ -60,15 +60,17 @@ class Reptile(Animal):
     def eat(self):
         return f"{self.name} ест мышей"
 
-def animal_sound(animals):  # Демонстрация полиморфизма
+# Демонстрация полиморфизма
+def animal_sound(animals):
     for animal in animals:
         print(animal.make_sound())
 
-animals = [  # Список животных разных видов
+# Список животных разных видов
+animals = [
     Bird("Чижик", 1, True),
     Cat("Васька", 5, True),
     Reptile("Гена", 4, True)
 ]
 
-# Демонстрация работы функции
+# Работы функции
 animal_sound(animals)
