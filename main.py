@@ -8,6 +8,8 @@
 # которая принимает список животных и вызывает метод `make_sound()` для каждого животного.
 # 4. Используйте композицию для создания класса `Zoo`, который будет содержать информацию о животных
 # и сотрудниках. Должны быть методы для добавления животных и сотрудников в зоопарк.
+# 5. Создайте классы для сотрудников, например, `ZooKeeper`, `Veterinarian`, которые могут иметь
+# специфические методы (например, `feed_animal()` для `ZooKeeper` и `heal_animal()` для `Veterinarian`).
 
 # Базовый класс Animal
 class Animal:
@@ -84,6 +86,24 @@ class Employee:
         self.name = name
         self.position = position  # Должность сотрудника
 
+# Класс ухаживающих за животными
+
+class ZooKeeper(Employee):
+    def __init__(self, name):
+        super().__init__(name, position="Zoo Keeper")
+
+    def feed_animal(self, animal):
+        print(f"{self.name} кормит {animal.name}")
+
+# Класс ветеринаров
+
+class Veterinarian(Employee):
+    def __init__(self, name):
+        super().__init__(name, position="Veterinarian")
+
+    def heal_animal(self, animal):
+        print(f"{self.name} лечит {animal.name}")
+
 # Класс Zoo, использующий композицию
 
 class Zoo:
@@ -116,12 +136,14 @@ zoo.add_animal(Bird("Чижик", 1, True))
 zoo.add_animal(Cat("Васька", 5, True))
 zoo.add_animal(Reptile("Каа", 4, True))
 
-# Добавление сотрудников в зоопарк
-zoo.add_employee(Employee("Елена", "Ухаживает за птицами"))
-zoo.add_employee(Employee("Алексей", "Кормит кошек"))
+# Добавление сотрудников в зоопарк с использованием новых классов для каждой профессии
+zoo.add_employee(ZooKeeper("Елена"))
+zoo.add_employee(Veterinarian("Алексей"))
 
 # Вывод информации о животных и сотрудниках зоопарка
 zoo.list_animals()
 zoo.list_employees()
 
-
+# Работ программы
+zoo.employees[0].feed_animal(zoo.animals[0])  # Елена кормит Чижика
+zoo.employees[1].heal_animal(zoo.animals[1])  # Алексей лечит Ваську
