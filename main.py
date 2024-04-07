@@ -6,6 +6,8 @@
 # (например, различный звук для `make_sound()`).
 # 3. Продемонстрируйте полиморфизм: создайте функцию `animal_sound(animals)`,
 # которая принимает список животных и вызывает метод `make_sound()` для каждого животного.
+# 4. Используйте композицию для создания класса `Zoo`, который будет содержать информацию о животных
+# и сотрудниках. Должны быть методы для добавления животных и сотрудников в зоопарк.
 
 # Базовый класс Animal
 class Animal:
@@ -69,8 +71,57 @@ def animal_sound(animals):
 animals = [
     Bird("Чижик", 1, True),
     Cat("Васька", 5, True),
-    Reptile("Гена", 4, True)
+    Reptile("Каа", 4, True)
 ]
 
-# Работы функции
+# Работа программы
 animal_sound(animals)
+
+# Класс сотрудника зоопарка
+
+class Employee:
+    def __init__(self, name, position):
+        self.name = name
+        self.position = position  # Должность сотрудника
+
+# Класс Zoo, использующий композицию
+
+class Zoo:
+    def __init__(self):
+        self.animals = []  # Пустой список животных в зоопарке
+        self.employees = []  # Пустой список сотрудников зоопарка
+
+    def add_animal(self, animal):
+        self.animals.append(animal)
+
+    def add_employee(self, employee):
+        self.employees.append(employee)
+
+    def list_animals(self):
+        print("Животные в зоопарке:")
+        for animal in self.animals:
+            print(f"Имя: {animal.name}, Возраст: {animal.age}")
+
+    def list_employees(self):
+        print("Сотрудники зоопарка:")
+        for employee in self.employees:
+            print(f"Имя: {employee.name}, Должность: {employee.position}")
+
+# Использование класса Zoo
+
+zoo = Zoo()
+
+# Добавление животных в зоопарк
+zoo.add_animal(Bird("Чижик", 1, True))
+zoo.add_animal(Cat("Васька", 5, True))
+zoo.add_animal(Reptile("Каа", 4, True))
+
+# Добавление сотрудников в зоопарк
+zoo.add_employee(Employee("Елена", "Ухаживает за птицами"))
+zoo.add_employee(Employee("Алексей", "Кормит кошек"))
+
+# Вывод информации о животных и сотрудниках зоопарка
+zoo.list_animals()
+zoo.list_employees()
+
+
